@@ -34,7 +34,7 @@ LABEL org.opencontainers.image.title="OpenAI from Scratch" \
 COPY --from=builder /backend backend
 COPY docker-compose.yaml .
 COPY metadata.json .
-COPY docker.svg .
+COPY bot.svg .
 COPY --from=client-builder /ui/build ui
 
 WORKDIR /backend
@@ -45,6 +45,9 @@ WORKDIR /
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
+#fix some ssl errors
+RUN python -m pip install --no-cache-dir --upgrade certifi
+
 # Start Gunicorn with UNIX socket
-CMD ["gunicorn", "--bind", "unix:/run/guest-services/backend.sock", "backend.loader:app"]
+CMD ["gunicorn", "--bind", "unix:/run/guest-services/backend5.sock", "backend.loader:app", "-t 12000"]
 

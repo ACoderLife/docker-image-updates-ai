@@ -1,14 +1,14 @@
 {
-  "icon": "docker.svg",
+  "icon": "bot.svg",
   "vm": {
     "composefile": "docker-compose.yaml",
     "exposes": {
-      "socket": "backend.sock"
+      "socket": "backend5.sock"
     }
   },
   "ui": {
     "dashboard-tab": {
-      "title": "My Extension",
+      "title": "Whats New AI?",
       "src": "index.html",
       "root": "ui"
     }
